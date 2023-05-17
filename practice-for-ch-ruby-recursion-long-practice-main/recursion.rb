@@ -154,12 +154,13 @@ end
 # # => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
 
 def permutations(arr)
-    return arr if arr.length == 1
+    return arr if arr.length == 2
     fin_arr = []
     arr.each_with_index do |ele, i|
         fin_arr << (permutations(arr[0...i]+arr[i+1..-1]) << ele)    
     end
-    return fin_arr
+    return fin_arr 
 end
 
 p permutations([1, 2, 3])
+
