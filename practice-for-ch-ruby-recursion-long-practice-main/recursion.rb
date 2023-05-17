@@ -132,7 +132,7 @@ def merge(arr_one,arr_two)
     finArr.flatten
 end
 
-p merge_sort([38,27,43,3,8,82,10])
+ p merge_sort([38,27,43,3,8,82,10])
 
 # p merge([2,6],[5,7])
 
@@ -147,8 +147,19 @@ def subsets(array)
     return subsets(array[0...-1])  + new_arr
 end
 
-p subsets([]) # => [[]]
-p subsets([1]) # => [[], [1]]
-p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
-p subsets([1, 2, 3])
-# => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+# p subsets([]) # => [[]]
+# p subsets([1]) # => [[], [1]]
+# p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
+# p subsets([1, 2, 3])
+# # => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+
+def permutations(arr)
+    return arr if arr.length == 1
+    fin_arr = []
+    arr.each_with_index do |ele, i|
+        fin_arr << (permutations(arr[0...i]+arr[i+1..-1]) << ele)    
+    end
+    return fin_arr
+end
+
+p permutations([1, 2, 3])
