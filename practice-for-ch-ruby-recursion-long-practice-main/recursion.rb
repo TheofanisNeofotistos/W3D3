@@ -80,11 +80,58 @@ def bsearch(array,target)
 
 end 
 
-p bsearch([1, 2, 3], 1) # => 0
-p bsearch([2, 3, 4, 5], 3) # => 1
-p bsearch([2, 4, 6, 8, 10], 6) # => 2
-p bsearch([1, 3, 4, 5, 9], 5) # => 3
-p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
-p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
-p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
+# p bsearch([1, 2, 3], 1) # => 0
+# p bsearch([2, 3, 4, 5], 3) # => 1
+# p bsearch([2, 4, 6, 8, 10], 6) # => 2
+# p bsearch([1, 3, 4, 5, 9], 5) # => 3
+# p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+# p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+# p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
 
+def merge_sort(arr)
+    return [] if arr.length == 0
+    return arr if arr.length == 1
+
+    half = arr.length / 2 
+    half =- 1 if arr.length.even?
+
+    left_arr = merge_sort(arr[0...half])
+    right_arr = merge_sort(arr[half..-1])
+    # p left_arr
+    # p right_arr
+
+    # return left_arr + right_arr
+    
+     return merge(left_arr,right_arr)
+    
+
+
+    # if left_arr.length == 1 && right_arr.length == 1
+    #     if left_arr[0] > right_arr[0]
+    #         return left_arr + right_arr
+    #     else
+    #         return right_arr + left_arr
+    #     end
+    # elsif left_arr.length == 1 && right_arr.length == 0
+    #     return left_arr[0]
+    # end
+end
+
+def merge(arr_one,arr_two)
+    finArr = []
+    while arr_one.length != 0 && arr_two.length != 0
+        
+        if arr_one[0] < arr_two[0]
+            finArr << arr_one.shift
+        else
+            finArr << arr_two.shift
+        end
+    end
+    finArr << arr_one
+    finArr << arr_two
+    finArr.flatten
+end
+
+p merge_sort([38,27,43,3,8,82,10])
+
+# p merge([2,6],[5,7])
