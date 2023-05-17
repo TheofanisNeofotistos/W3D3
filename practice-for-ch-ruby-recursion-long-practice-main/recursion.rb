@@ -135,3 +135,20 @@ end
 p merge_sort([38,27,43,3,8,82,10])
 
 # p merge([2,6],[5,7])
+
+def subsets(array)
+    return [[]]if array.length == 0 
+    return [[]] << array if array.length == 1
+    new_arr = []
+
+    subsets(array[0...-1]).each do |ele| 
+        new_arr << (ele << array[-1])
+    end
+    return subsets(array[0...-1])  + new_arr
+end
+
+p subsets([]) # => [[]]
+p subsets([1]) # => [[], [1]]
+p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
+p subsets([1, 2, 3])
+# => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
