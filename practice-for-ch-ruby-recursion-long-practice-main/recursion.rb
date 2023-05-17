@@ -47,8 +47,8 @@ robot_parts_copy = robot_parts.deep_dup
 robot_parts_copy[1] << "LEDs"
 # but it does
 # p robot_parts_copy
-p robot_parts_copy[1]
-p robot_parts[1]
+# p robot_parts_copy[1]
+# p robot_parts[1]
 
 # arr = [[1,2],[3,5],[[6]]]
 # arr_two = arr.deep_dup
@@ -56,3 +56,35 @@ p robot_parts[1]
 
 # p arr
 # p arr_two
+
+def fibs(n)
+    return 0 if n ==1 
+    return 1 if n == 2
+    fibs(n - 1) + fibs(n - 2)
+end 
+
+def bsearch(array,target)
+    return nil if array.length == 1 && array[0] != target
+    return 0 if array.length == 1
+    mid = array.length / 2 
+    return mid if target == array[mid]
+
+    less_array = array[0..mid - 1]
+    greater_array = array[mid + 1..-1]
+    if target < array[mid]
+       return bsearch(less_array,target)
+    else 
+       return nil if bsearch(greater_array,target) == nil
+       return less_array.length + 1 + bsearch(greater_array,target) 
+    end
+
+end 
+
+p bsearch([1, 2, 3], 1) # => 0
+p bsearch([2, 3, 4, 5], 3) # => 1
+p bsearch([2, 4, 6, 8, 10], 6) # => 2
+p bsearch([1, 3, 4, 5, 9], 5) # => 3
+p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
+
